@@ -1,0 +1,80 @@
+/**
+ * 版权所有: 爱WiFi无线运营中心
+ * 创建日期: 2017-01-19 19:33
+ * 创建作者: haoxu 
+ * 文件名称: input-group
+ * 版本: v1.0
+ * 功能: xx
+ * 修改记录: xx
+ */
+.form-group{
+    width:100%;
+    font-size: 14px;
+    box-sizing:border-box;
+    padding:0 20px;
+    .input-group{
+        margin-bottom:10px;
+        width:100%;
+        &:first-child{
+            margin-top:20px;
+        }
+        label{
+            vertical-align: top;
+            display:inline-block;
+            width:25%;
+            color:#888;
+        }
+        span{
+            width:70%;
+            word-wrap: break-word;
+        }
+        .textarea{
+            vertical-align: top;
+        }
+        .role-top{
+            margin-top:-35px;
+        }
+        input,textarea,select{
+            display:inline-block;
+            width:70%;
+            height:36px;
+            line-height:36px;
+            box-sizing:border-box;
+            border:1px solid #ECECEC;
+            background-color: rgb(252, 252, 252);
+            &:focus {
+                border-color: #0090d3;
+                transition: .3s ease-in;
+            }
+        }
+        input,select{
+            text-indent: 8px;
+        }
+        textarea{
+            box-sizing:border-box;
+            height:80px;
+            padding:5px;
+            line-height:18px;
+        }
+    }
+    .password{
+        input{
+            width:50%;
+        }
+        .create{
+            display:inline-block;
+            height:36px;
+            line-height:36px;
+            width:18%;
+            color:#fff;
+            background-color:#147FE3;
+            text-align:center;
+            cursor: pointer;
+        }
+    }
+    .form-text{
+        display:inline-block;
+        height:36px;
+        color: #333;
+    }
+}

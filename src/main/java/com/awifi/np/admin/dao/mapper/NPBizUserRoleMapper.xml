@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.awifi.np.admin.dao.NPBizUserRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.awifi.np.admin.entity.NPBizUserRole" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <id column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="order" property="order" jdbcType="INTEGER" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <resultMap id="BizRoleMap" type="com.awifi.np.admin.entity.NPBizRole" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+  </resultMap>
+
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_id, role_id, order
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.awifi.np.admin.entity.NPBizUserRoleCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from np_biz_user_role
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.awifi.np.admin.entity.NPBizUserRoleKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from np_biz_user_role
+    where user_id = #{userId,jdbcType=BIGINT}
+      and role_id = #{roleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.awifi.np.admin.entity.NPBizUserRoleKey" >
+    delete from np_biz_user_role
+    where user_id = #{userId,jdbcType=BIGINT}
+      and role_id = #{roleId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.awifi.np.admin.entity.NPBizUserRoleCriteria" >
+    delete from np_biz_user_role
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.awifi.np.admin.entity.NPBizUserRole" >
+    insert into np_biz_user_role (user_id, role_id, order
+      )
+    values (#{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{order,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.awifi.np.admin.entity.NPBizUserRole" >
+    insert into np_biz_user_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="order != null" >
+        order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.awifi.np.admin.entity.NPBizUserRoleCriteria" resultType="java.lang.Integer" >
+    select count(*) from np_biz_user_role
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update np_biz_user_role
+    <set >
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.roleId != null" >
+        role_id = #{record.roleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.order != null" >
+        order = #{record.order,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update np_biz_user_role
+    set user_id = #{record.userId,jdbcType=BIGINT},
+      role_id = #{record.roleId,jdbcType=BIGINT},
+      order = #{record.order,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.awifi.np.admin.entity.NPBizUserRole" >
+    update np_biz_user_role
+    <set >
+      <if test="order != null" >
+        order = #{order,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+      and role_id = #{roleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.awifi.np.admin.entity.NPBizUserRole" >
+    update np_biz_user_role
+    set order = #{order,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=BIGINT}
+      and role_id = #{roleId,jdbcType=BIGINT}
+  </update>
+
+  <insert id="insertBulk" parameterType="java.util.List">
+    INSERT INTO `np_biz_user_role`
+    (`user_id`,`role_id`,`order`)
+    VALUES
+    <foreach collection="list" item="item" index="index" separator="," >
+      (
+      #{item.userId,jdbcType=BIGINT},
+      #{item.roleId,jdbcType=BIGINT},
+      #{item.order,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
+
+  <select id="selectByUserIdList"  parameterType="java.util.List" resultMap="BaseResultMap">
+    SELECT *,r.`role_name`
+    FROM `np_biz_user_role` ur
+    LEFT JOIN `np_biz_role` r ON r.`id`=ur.`role_id`
+    WHERE ur.`user_id` IN
+    <foreach item="item" index="index" collection="list"
+             open="(" separator="," close=")">
+      #{item,jdbcType=BIGINT}
+    </foreach>
+  </select>
+
+  <select id="selectByUserId" parameterType="java.lang.Long" resultMap="BizRoleMap">
+    SELECT r.*
+    FROM `np_biz_user_role` ur
+    LEFT JOIN `np_biz_role` r ON r.`id`=ur.`role_id`
+    WHERE ur.`user_id` = #{uid}
+    ORDER by ur.`order`
+  </select>
+
+</mapper>

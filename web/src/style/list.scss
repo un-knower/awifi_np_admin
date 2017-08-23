@@ -1,0 +1,272 @@
+/**
+ * 版权所有: 爱WiFi无线运营中心
+ * 创建日期: 2017-01-19 09:26
+ * 创建作者: haoxu 
+ * 文件名称: list
+ * 版本: v1.0
+ * 功能: xx
+ * 修改记录: xx
+ */
+//@import "comm.scss";
+//@import "button.scss";
+//@import "input-group.scss";
+.noInfo{
+    display:block;
+    width:100%;
+    height:50px;
+    text-align:center;
+    line-height:50px;
+}
+.input-width{
+    min-width:200px;
+}
+// 表格右侧操作按钮
+.ivu-table-cell .ivu-btn {
+    color: #137EE1;
+    border-color: #137EE1;
+
+    &:hover {
+        background-color: #137EE1;
+        color: #fff;
+    }
+
+    & > .ivu-icon {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+}
+.tables{
+    width:96%;
+    margin:0 auto;
+}
+table{
+    margin-top:200px;
+    box-sizing:border-box;
+    thead{
+        display: block;
+        position: fixed;
+        top: 150px;
+        z-index: 4;
+        tr{
+            width:100%;
+            display: block;
+            th{
+                display: inline-block;
+            }
+        }
+    }
+    tbody{
+        padding-bottom:150px;
+        display:block;
+        width:100%;
+    }
+    td,
+    th {
+        border-collapse: collapse;
+        border-spacing: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size:14px;
+        height:50px;
+        line-height:50px;
+        box-sizing:border-box;
+        padding:0 5px;
+    }
+    td{
+        text-align:center;
+        .entry{
+            color: #1F60A1;
+        }
+    }
+}
+
+table {
+    display:block;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+th {
+    font-weight: 400;
+    color: #9AACBF;
+    letter-spacing: 0;
+    cursor: pointer;
+    background: #DDEEFF;
+}
+
+tr:nth-of-type(odd) {
+    background: #fff
+}
+
+tr:nth-of-type(even) {
+    background: #f7f7f7
+}
+input{
+    outline: none;
+    &[type=text] {
+        box-sizing:border-box;
+        border:1px solid #E7E7E7;
+        border-radius:3px;
+        font-size:14px;
+        text-indent: 1rem;
+        &:focus {
+            border-color: #0090d3;
+            transition: .3s ease-in;
+        }
+    }
+}
+select{
+    outline: none;
+    box-sizing:border-box;
+    border:1px solid #E7E7E7;
+    border-radius:3px;
+    font-size:14px;
+    text-indent: 1rem;
+    &:focus {
+        border-color: #0090d3;
+        transition: .3s ease-in;
+    }
+}
+
+button {
+    cursor:pointer;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 10px;
+    color: #fff;
+    border-radius: 3px;
+    outline: 0;
+    transition: .4s ease-out;
+    font-size:14px;
+    border:none;
+    &:hover,&:focus {
+        opacity: 0.8;
+        cursor: pointer;
+        transition: .15s ease-in;
+    }
+}
+.container {
+    box-sizing:border-box;
+    width: calc(100% - 210px);
+    margin-left: 210px;
+    // 搜索条、表格表头固定
+    .table-wrap {
+        padding: 165px 20px 65px 20px;
+    }
+
+    // 搜索条
+    .search-bar {
+        position: fixed;
+        left: 210px;
+        top: 60px;
+        z-index: 5;
+        width: calc(100% - 210px);
+        padding: 25px 35px;
+        background-color: #F2F2F2;
+        height:92px;
+
+        .ivu-input-wrapper{
+            width:auto;
+        }
+
+        .action-group {
+            padding-bottom: 15px;
+        }
+
+        .select-group {
+            display: inline-block;
+        }
+
+        > ul > li {
+            display: inline-block;
+            margin-right: 10px;
+            min-width: 100px;
+        }
+        .ivu-btn {
+            padding: 4px 8px;
+            font-size: 14px;
+        }
+        .ivu-btn > .ivu-icon {
+            font-size: 16px;
+        }
+
+        .ivu-btn > .ivu-icon + span {
+            margin-left: 2px;
+        }
+    }
+
+}
+
+.btn-danger {
+    padding: 5px 15px;
+    border: 1px solid salmon;
+    background: salmon;
+}
+
+.btn-save {
+    border: 1px solid #0090d3;
+    background: #0090d3;
+}
+
+.btn-close {
+    border: 1px solid #ccc;
+    background: #ccc;
+}
+
+.form-group {
+    margin: 10px;
+}
+.form-group > label {
+    display: inline-block;
+    padding-right: 1rem;
+    width: 10rem;
+    text-align: right;
+}
+
+.form-group > input,
+.form-group > select {
+    display: inline-block;
+    height: 1.8rem;
+    line-height: 1.8rem;
+}
+.interface-list{
+    width:800px;
+    margin:0 auto;
+}
+.delete-popup{
+    height:36px;
+    line-height:36px;
+    text-align:center;
+    font-size:16px;
+    img{
+        width:36px;
+        height:36px;
+    }
+}
+.status-select {
+    position: relative;
+    width: 8%;
+    height: 40px;
+    .select-control {
+        width: 90%;
+        height: 100%;
+        display: inline-block;
+        margin:0 auto;
+        margin-left:5%;
+    }
+}
+.area-select{
+    width: 5%;
+}
+.search-button{
+    width:60px;
+    height: 40px;
+    margin-left: 15px;
+    button{
+        width: 100%;
+        height: 100%;
+        background-color:#137EE2;
+    }
+}

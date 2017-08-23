@@ -1,0 +1,65 @@
+/**
+ * 版权所有: 爱WiFi无线运营中心
+ * 创建日期: 2017-01-20 16:54
+ * 创建作者: haoxu 
+ * 文件名称: transfer
+ * 版本: v1.0
+ * 功能: xx
+ * 修改记录: xx
+ */
+.left-section,.right-section{
+    display: inline-block;
+    overflow:auto;
+    background-color:#fff;
+    width: 260px;
+    height:400px;
+    border:1px solid #ECECEC;
+    border-radius:3px;
+    margin-left:0px;
+    //margin-top:40px;
+    box-sizing:border-box;
+    padding:15px;
+    .title{
+        font-size: 14px;
+        color: #888;
+        height:30px;
+        border-bottom:1px solid #ECECEC;
+    }
+}
+//myTransfer 对应css
+.my-list{
+    //padding-left: 1em;
+    overflow: auto;
+    min-height:300px;
+    .my-rows{
+        position:relative;
+        text-align:center;
+        line-height:30px;
+        background-color: #EFEFEF;
+        color: #333;
+        list-style-type:none;
+        cursor: pointer;
+        margin-top:5px;
+        .name{
+            display: inline-block;
+            //width: 70%;
+            //overflow: hidden;
+        }
+        .icon{
+            position:absolute;
+            right:5px;
+            font-size:25px;
+            font-style: normal;
+        }
+
+    }
+
+    .my-rows:hover{
+        color:white;
+        background:#3088e0
+    }
+
+    .rowDisabled{
+        color:#CCC;
+    }
+}

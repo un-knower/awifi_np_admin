@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.awifi.np.admin.dao.NPServiceMapper">
+  <resultMap id="BaseResultMap" type="com.awifi.np.admin.entity.NPService">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="service_code" jdbcType="VARCHAR" property="serviceCode" />
+    <result column="service_key" jdbcType="VARCHAR" property="serviceKey" />
+    <result column="service_name" jdbcType="VARCHAR" property="serviceName" />
+    <result column="service_host" jdbcType="VARCHAR" property="serviceHost" />
+    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
+    <result column="create_username" jdbcType="VARCHAR" property="createUsername" />
+    <result column="check_auth" jdbcType="VARCHAR" property="checkAuth" />
+    <result column="service_port" jdbcType="VARCHAR" property="servicePort" />
+    <result column="publish_status" jdbcType="TINYINT" property="publishStatus" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="is_menu" jdbcType="BIT" property="isMenu" />
+    <result column="has_submenu" jdbcType="BIT" property="hasSubmenu" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="target_id" jdbcType="VARCHAR" property="targetId" />
+    <result column="template_crud" jdbcType="VARCHAR" property="templateCrud" />
+    <result column="check_safe" jdbcType="VARCHAR" property="checkSafe" />
+    <result column="role_menu_api" jdbcType="VARCHAR" property="roleMenuApi" />
+    <result column="role_permission_api" jdbcType="VARCHAR" property="rolePermissionApi" />
+    <result column="menu_tree_api" jdbcType="VARCHAR" property="menuTreeApi" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="platform_name" property="platformName" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMap" type="com.awifi.np.admin.entity.NPService">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="service_code" jdbcType="VARCHAR" property="serviceCode" />
+    <result column="service_key" jdbcType="VARCHAR" property="serviceKey" />
+    <result column="service_name" jdbcType="VARCHAR" property="serviceName" />
+    <result column="service_host" jdbcType="VARCHAR" property="serviceHost" />
+    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
+    <result column="create_username" jdbcType="VARCHAR" property="createUsername" />
+    <result column="check_auth" jdbcType="VARCHAR" property="checkAuth" />
+    <result column="service_port" jdbcType="VARCHAR" property="servicePort" />
+    <result column="publish_status" jdbcType="TINYINT" property="publishStatus" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="is_menu" jdbcType="BIT" property="isMenu" />
+    <result column="has_submenu" jdbcType="BIT" property="hasSubmenu" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="target_id" jdbcType="VARCHAR" property="targetId" />
+    <result column="template_crud" jdbcType="VARCHAR" property="templateCrud" />
+    <result column="check_safe" jdbcType="VARCHAR" property="checkSafe" />
+    <result column="role_menu_api" jdbcType="VARCHAR" property="roleMenuApi" />
+    <result column="role_permission_api" jdbcType="VARCHAR" property="rolePermissionApi" />
+    <result column="menu_tree_api" jdbcType="VARCHAR" property="menuTreeApi" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="platform_name" property="platformName" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <collection property="interfaces" column="service_code" ofType="com.awifi.np.admin.entity.NPInterface">
+        <id column="interfaceid" property="id" jdbcType="INTEGER" />
+	    <result column="service_code" property="serviceCode" jdbcType="VARCHAR" />
+	    <result column="interface_name" property="interfaceName" jdbcType="VARCHAR" />
+	    <result column="interface_code" property="interfaceCode" jdbcType="CHAR" />
+	    <result column="interface_url" property="interfaceUrl" jdbcType="VARCHAR" />
+	    <result column="interface_method" property="interfaceMethod" jdbcType="VARCHAR" />
+	    <result column="ifcheck" property="ifcheck" jdbcType="BIT" />
+	    <result column="remark" property="remark" jdbcType="VARCHAR" />
+	    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+	    <result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
+	    <result column="update_user_id" property="updateUserId" jdbcType="INTEGER" />
+	    <result column="status" property="status" jdbcType="TINYINT" />
+	    <result column="service_name" property="serviceName" jdbcType="VARCHAR" />
+	    <result column="serviceId" property="serviceId" jdbcType="INTEGER" />
+    </collection>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, service_code, service_key, service_name, service_host, create_user_id, create_username, 
+    check_auth, service_port, publish_status, version, is_menu, has_submenu, menu_url, 
+    menu_name, target_id, template_crud, check_safe, role_menu_api, role_permission_api, 
+    menu_tree_api, remark, create_date
+  </sql>
+ <select id="selectByExample" parameterType="com.awifi.np.admin.entity.NPServiceCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from np_service
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectALL" parameterType="java.lang.Boolean" resultMap="BaseResultMap">
+     select i.id, i.service_code, i.service_key, i.service_name, i.service_host, i.create_user_id, i.create_username, 
+    i.check_auth, i.service_port, i.publish_status, i.version, i.is_menu, i.has_submenu, i.menu_url, 
+    i.menu_name, i.target_id, i.template_crud, i.check_safe, i.role_menu_api, i.role_permission_api, 
+    i.menu_tree_api, i.remark, i.create_date,p.list_order from np_service i inner join np_platform_service p on i.service_code=p.service_code 
+    where i.publish_status=1
+    <if test="_parameter!=null">
+      and i.is_menu=#{isMenu,jdbcType=BIT}
+    </if> 
+    order by p.list_order ASC
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from np_service
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from np_service
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.awifi.np.admin.entity.NPServiceCriteria">
+    delete from np_service
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.awifi.np.admin.entity.NPService">
+    insert into np_service (id, service_code, service_key, 
+      service_name, service_host, create_user_id, 
+      create_username, check_auth, service_port, 
+      publish_status, version, is_menu, 
+      has_submenu, menu_url, menu_name, 
+      target_id, template_crud, check_safe, 
+      role_menu_api, role_permission_api, menu_tree_api, 
+      remark, create_date)
+    values (#{id,jdbcType=INTEGER}, #{serviceCode,jdbcType=VARCHAR}, #{serviceKey,jdbcType=VARCHAR}, 
+      #{serviceName,jdbcType=VARCHAR}, #{serviceHost,jdbcType=VARCHAR}, #{createUserId,jdbcType=INTEGER}, 
+      #{createUsername,jdbcType=VARCHAR}, #{checkAuth,jdbcType=VARCHAR}, #{servicePort,jdbcType=VARCHAR}, 
+      #{publishStatus,jdbcType=TINYINT}, #{version,jdbcType=VARCHAR}, #{isMenu,jdbcType=BIT}, 
+      #{hasSubmenu,jdbcType=BIT}, #{menuUrl,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, 
+      #{targetId,jdbcType=VARCHAR}, #{templateCrud,jdbcType=VARCHAR}, #{checkSafe,jdbcType=VARCHAR}, 
+      #{roleMenuApi,jdbcType=VARCHAR}, #{rolePermissionApi,jdbcType=VARCHAR}, #{menuTreeApi,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.awifi.np.admin.entity.NPService">
+    insert into np_service
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="serviceCode != null">
+        service_code,
+      </if>
+      <if test="serviceKey != null">
+        service_key,
+      </if>
+      <if test="serviceName != null">
+        service_name,
+      </if>
+      <if test="serviceHost != null">
+        service_host,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createUsername != null">
+        create_username,
+      </if>
+      <if test="checkAuth != null">
+        check_auth,
+      </if>
+      <if test="servicePort != null">
+        service_port,
+      </if>
+      <if test="publishStatus != null">
+        publish_status,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="isMenu != null">
+        is_menu,
+      </if>
+      <if test="hasSubmenu != null">
+        has_submenu,
+      </if>
+      <if test="menuUrl != null">
+        menu_url,
+      </if>
+      <if test="menuName != null">
+        menu_name,
+      </if>
+      <if test="targetId != null">
+        target_id,
+      </if>
+      <if test="templateCrud != null">
+        template_crud,
+      </if>
+      <if test="checkSafe != null">
+        check_safe,
+      </if>
+      <if test="roleMenuApi != null">
+        role_menu_api,
+      </if>
+      <if test="rolePermissionApi != null">
+        role_permission_api,
+      </if>
+      <if test="menuTreeApi != null">
+        menu_tree_api,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serviceCode != null">
+        #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceKey != null">
+        #{serviceKey,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceHost != null">
+        #{serviceHost,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUsername != null">
+        #{createUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="checkAuth != null">
+        #{checkAuth,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePort != null">
+        #{servicePort,jdbcType=VARCHAR},
+      </if>
+      <if test="publishStatus != null">
+        #{publishStatus,jdbcType=TINYINT},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="isMenu != null">
+        #{isMenu,jdbcType=BIT},
+      </if>
+      <if test="hasSubmenu != null">
+        #{hasSubmenu,jdbcType=BIT},
+      </if>
+      <if test="menuUrl != null">
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetId != null">
+        #{targetId,jdbcType=VARCHAR},
+      </if>
+      <if test="templateCrud != null">
+        #{templateCrud,jdbcType=VARCHAR},
+      </if>
+      <if test="checkSafe != null">
+        #{checkSafe,jdbcType=VARCHAR},
+      </if>
+      <if test="roleMenuApi != null">
+        #{roleMenuApi,jdbcType=VARCHAR},
+      </if>
+      <if test="rolePermissionApi != null">
+        #{rolePermissionApi,jdbcType=VARCHAR},
+      </if>
+      <if test="menuTreeApi != null">
+        #{menuTreeApi,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.awifi.np.admin.entity.NPServiceCriteria" resultType="java.lang.Long">
+    select count(*) from np_service
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update np_service
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceCode != null">
+        service_code = #{record.serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceKey != null">
+        service_key = #{record.serviceKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceName != null">
+        service_name = #{record.serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceHost != null">
+        service_host = #{record.serviceHost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createUsername != null">
+        create_username = #{record.createUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkAuth != null">
+        check_auth = #{record.checkAuth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.servicePort != null">
+        service_port = #{record.servicePort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishStatus != null">
+        publish_status = #{record.publishStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.version != null">
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isMenu != null">
+        is_menu = #{record.isMenu,jdbcType=BIT},
+      </if>
+      <if test="record.hasSubmenu != null">
+        has_submenu = #{record.hasSubmenu,jdbcType=BIT},
+      </if>
+      <if test="record.menuUrl != null">
+        menu_url = #{record.menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuName != null">
+        menu_name = #{record.menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetId != null">
+        target_id = #{record.targetId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.templateCrud != null">
+        template_crud = #{record.templateCrud,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkSafe != null">
+        check_safe = #{record.checkSafe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleMenuApi != null">
+        role_menu_api = #{record.roleMenuApi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rolePermissionApi != null">
+        role_permission_api = #{record.rolePermissionApi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuTreeApi != null">
+        menu_tree_api = #{record.menuTreeApi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update np_service
+    set id = #{record.id,jdbcType=INTEGER},
+      service_code = #{record.serviceCode,jdbcType=VARCHAR},
+      service_key = #{record.serviceKey,jdbcType=VARCHAR},
+      service_name = #{record.serviceName,jdbcType=VARCHAR},
+      service_host = #{record.serviceHost,jdbcType=VARCHAR},
+      create_user_id = #{record.createUserId,jdbcType=INTEGER},
+      create_username = #{record.createUsername,jdbcType=VARCHAR},
+      check_auth = #{record.checkAuth,jdbcType=VARCHAR},
+      service_port = #{record.servicePort,jdbcType=VARCHAR},
+      publish_status = #{record.publishStatus,jdbcType=TINYINT},
+      version = #{record.version,jdbcType=VARCHAR},
+      is_menu = #{record.isMenu,jdbcType=BIT},
+      has_submenu = #{record.hasSubmenu,jdbcType=BIT},
+      menu_url = #{record.menuUrl,jdbcType=VARCHAR},
+      menu_name = #{record.menuName,jdbcType=VARCHAR},
+      target_id = #{record.targetId,jdbcType=VARCHAR},
+      template_crud = #{record.templateCrud,jdbcType=VARCHAR},
+      check_safe = #{record.checkSafe,jdbcType=VARCHAR},
+      role_menu_api = #{record.roleMenuApi,jdbcType=VARCHAR},
+      role_permission_api = #{record.rolePermissionApi,jdbcType=VARCHAR},
+      menu_tree_api = #{record.menuTreeApi,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.awifi.np.admin.entity.NPService">
+    update np_service
+    <set>
+      <if test="serviceCode != null">
+        service_code = #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceKey != null">
+        service_key = #{serviceKey,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        service_name = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceHost != null">
+        service_host = #{serviceHost,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUsername != null">
+        create_username = #{createUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="checkAuth != null">
+        check_auth = #{checkAuth,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePort != null">
+        service_port = #{servicePort,jdbcType=VARCHAR},
+      </if>
+      <if test="publishStatus != null">
+        publish_status = #{publishStatus,jdbcType=TINYINT},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="isMenu != null">
+        is_menu = #{isMenu,jdbcType=BIT},
+      </if>
+      <if test="hasSubmenu != null">
+        has_submenu = #{hasSubmenu,jdbcType=BIT},
+      </if>
+      <if test="menuUrl != null">
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetId != null">
+        target_id = #{targetId,jdbcType=VARCHAR},
+      </if>
+      <if test="templateCrud != null">
+        template_crud = #{templateCrud,jdbcType=VARCHAR},
+      </if>
+      <if test="checkSafe != null">
+        check_safe = #{checkSafe,jdbcType=VARCHAR},
+      </if>
+      <if test="roleMenuApi != null">
+        role_menu_api = #{roleMenuApi,jdbcType=VARCHAR},
+      </if>
+      <if test="rolePermissionApi != null">
+        role_permission_api = #{rolePermissionApi,jdbcType=VARCHAR},
+      </if>
+      <if test="menuTreeApi != null">
+        menu_tree_api = #{menuTreeApi,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.awifi.np.admin.entity.NPService">
+    update np_service
+    set service_code = #{serviceCode,jdbcType=VARCHAR},
+      service_key = #{serviceKey,jdbcType=VARCHAR},
+      service_name = #{serviceName,jdbcType=VARCHAR},
+      service_host = #{serviceHost,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      create_username = #{createUsername,jdbcType=VARCHAR},
+      check_auth = #{checkAuth,jdbcType=VARCHAR},
+      service_port = #{servicePort,jdbcType=VARCHAR},
+      publish_status = #{publishStatus,jdbcType=TINYINT},
+      version = #{version,jdbcType=VARCHAR},
+      is_menu = #{isMenu,jdbcType=BIT},
+      has_submenu = #{hasSubmenu,jdbcType=BIT},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      menu_name = #{menuName,jdbcType=VARCHAR},
+      target_id = #{targetId,jdbcType=VARCHAR},
+      template_crud = #{templateCrud,jdbcType=VARCHAR},
+      check_safe = #{checkSafe,jdbcType=VARCHAR},
+      role_menu_api = #{roleMenuApi,jdbcType=VARCHAR},
+      role_permission_api = #{rolePermissionApi,jdbcType=VARCHAR},
+      menu_tree_api = #{menuTreeApi,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="listPageService" parameterType="com.awifi.np.admin.entity.NPPage" resultMap="BaseResultMap">
+    select *
+    from np_service s
+    <where>
+      <if test="params.keyword!=null">
+        (s.`service_code` like #{params.keyword,jdbcType=VARCHAR} or s.`service_name` like #{params.keyword,jdbcType=VARCHAR})
+      </if>
+    </where>
+    order by s.`id` desc
+  </select>
+
+
+  <select id="listPageLevelOneMenu" parameterType="com.awifi.np.admin.entity.NPPage" resultMap="BaseResultMap" >
+    select *
+    from np_service s
+    <where>
+      <if test="params.isMenu!=null">
+        s.`is_menu` = #{params.isMenu,jdbcType=BIT}
+      </if>
+      <if test="params.keyword!=null">
+        and (s.`menu_name` like #{params.keyword,jdbcType=VARCHAR} or s.`service_name` like #{params.keyword,jdbcType=VARCHAR})
+      </if>
+    </where>
+    order by s.`id` desc
+  </select>
+
+
+  <select id="getJoinInfo" parameterType="int" resultMap="BaseResultMap">
+    SELECT s.*, p.`platform_name`,p.`id` as pid
+    FROM np_service s
+    LEFT JOIN np_platform_service ps ON ps.`service_code` = s.`service_code`
+    LEFT JOIN np_platform p ON ps.`app_id` = p.`app_id`
+    WHERE s.`id` = #{sid}
+    AND ps.`is_owner` = TRUE
+  </select>
+  
+ <!--  <select id="getByServiceCodes"  resultMap="ResultMap">
+   select  s.id, s.service_code, service_key, service_name, service_host,
+    check_auth, service_port, publish_status, is_menu,has_submenu, menu_url, 
+    menu_name, target_id, template_crud, check_safe, role_menu_api, role_permission_api, 
+    menu_tree_api,i.id as interfaceid, interface_name, interface_code, interface_url, interface_method, 
+    ifcheck, status from np_service s left join np_interface i on  s.service_code=i.service_code
+    where status=1 and s.service_code in 
+    <foreach collection="list" item="code" open="(" close=")" separator=",">
+      #{code}
+    </foreach>
+  </select> -->
+  <select id="getServieNamesByServiceCodes"  resultMap="ResultMap">
+   select  s.id, s.service_code, service_key, service_name, service_host,
+    check_auth, service_port, publish_status, is_menu,has_submenu, menu_url, 
+    menu_name, target_id, template_crud, check_safe, role_menu_api, role_permission_api, 
+    menu_tree_api from np_service s
+    where 1=1 and s.service_code in 
+    <foreach collection="list" item="code" open="(" close=")" separator=",">
+      #{code}
+    </foreach>
+  </select>
+  <select id="getByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select s.* from np_service s left join np_biz_role_service b_s on s.service_code=b_s.service_code where b_s.biz_role_id=#{rid}
+  </select>
+</mapper>

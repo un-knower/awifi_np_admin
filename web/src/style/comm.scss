@@ -1,0 +1,59 @@
+/**
+ * 功能: xx
+ * 修改记录: xx
+ * @author 朱学煌
+ * @date 2017-01-10 14:10
+ */
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    min-width: 1280px;
+
+}
+body {
+    background-color: #F2F2F2;
+    font-size: 14px;
+}
+body, select, input, textarea {
+    font: 12px/1.2 'Microsoft Yahei', Tahoma, Helvetica, Arial, '\5b8b\4f53', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+ul {
+    list-style-type: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+input:focus, textarea:focus, button:focus {
+    outline: none;
+}
+.center-text{
+    text-align:center;
+}
+/* 清除浮动 */
+.clearfix:before,.clearfix:after {
+    content:"";
+    display:table;
+}
+.clearfix:after {
+    clear:both;
+    overflow:hidden;
+}
+.clearfix {
+    zoom:1; /* for ie6 & ie7 */
+}
+.left{
+    float:left;
+}

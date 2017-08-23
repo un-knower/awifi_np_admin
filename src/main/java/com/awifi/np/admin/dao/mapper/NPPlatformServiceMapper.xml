@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.awifi.np.admin.dao.NPPlatformServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.awifi.np.admin.entity.NPPlatformService" >
+    <id column="app_id" property="appId" jdbcType="VARCHAR" />
+    <id column="service_code" property="serviceCode" jdbcType="VARCHAR" />
+    <result column="is_owner" property="isOwner" jdbcType="BIT" />
+    <result column="list_order" property="listOrder" jdbcType="INTEGER" />
+    <result column="service_name" property="serviceName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    app_id, service_code, is_owner, list_order
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.awifi.np.admin.entity.NPPlatformServiceCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from np_platform_service
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.awifi.np.admin.entity.NPPlatformServiceKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from np_platform_service
+    where app_id = #{appId,jdbcType=VARCHAR}
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.awifi.np.admin.entity.NPPlatformServiceKey" >
+    delete from np_platform_service
+    where app_id = #{appId,jdbcType=VARCHAR}
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.awifi.np.admin.entity.NPPlatformServiceCriteria" >
+    delete from np_platform_service
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.awifi.np.admin.entity.NPPlatformService" >
+    insert into np_platform_service (app_id, service_code, is_owner, 
+      list_order)
+    values (#{appId,jdbcType=VARCHAR}, #{serviceCode,jdbcType=VARCHAR}, #{isOwner,jdbcType=BIT}, 
+      #{listOrder,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.awifi.np.admin.entity.NPPlatformService" >
+    insert into np_platform_service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="serviceCode != null" >
+        service_code,
+      </if>
+      <if test="isOwner != null" >
+        is_owner,
+      </if>
+      <if test="listOrder != null" >
+        list_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceCode != null" >
+        #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isOwner != null" >
+        #{isOwner,jdbcType=BIT},
+      </if>
+      <if test="listOrder != null" >
+        #{listOrder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.awifi.np.admin.entity.NPPlatformServiceCriteria" resultType="java.lang.Integer" >
+    select count(*) from np_platform_service
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update np_platform_service
+    <set >
+      <if test="record.appId != null" >
+        app_id = #{record.appId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceCode != null" >
+        service_code = #{record.serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isOwner != null" >
+        is_owner = #{record.isOwner,jdbcType=BIT},
+      </if>
+      <if test="record.listOrder != null" >
+        list_order = #{record.listOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update np_platform_service
+    set app_id = #{record.appId,jdbcType=VARCHAR},
+      service_code = #{record.serviceCode,jdbcType=VARCHAR},
+      is_owner = #{record.isOwner,jdbcType=BIT},
+      list_order = #{record.listOrder,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.awifi.np.admin.entity.NPPlatformService" >
+    update np_platform_service
+    <set >
+      <if test="isOwner != null" >
+        is_owner = #{isOwner,jdbcType=BIT},
+      </if>
+      <if test="listOrder != null" >
+        list_order = #{listOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    where app_id = #{appId,jdbcType=VARCHAR}
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.awifi.np.admin.entity.NPPlatformService" >
+    update np_platform_service
+    set is_owner = #{isOwner,jdbcType=BIT},
+      list_order = #{listOrder,jdbcType=INTEGER}
+    where app_id = #{appId,jdbcType=VARCHAR}
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+  </update>
+
+
+  <select id="selectBindedService" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT DISTINCT(ps.`service_code`)
+    FROM np_platform_service ps
+    WHERE ps.`app_id` = #{appId, jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectOwnedService" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT DISTINCT(ps.`service_code`)
+    FROM np_platform_service ps
+    WHERE ps.`app_id` = #{appId, jdbcType=VARCHAR}
+    AND ps.`is_owner` = TRUE
+  </select>
+
+  <insert id="insertBulk" parameterType="java.util.List">
+
+    INSERT INTO np_platform_service
+    (`app_id`, `service_code`, `is_owner`, `list_order`)
+    VALUES
+    <foreach collection="list" item="item" index="index" separator="," >
+      (
+      #{item.appId,jdbcType=VARCHAR},
+      #{item.serviceCode,jdbcType=VARCHAR},
+      #{item.isOwner,jdbcType=BIT},
+      #{item.listOrder,jdbcType=INTEGER}
+      )
+    </foreach>
+
+  </insert>
+
+  <select id="selectBindedServiceInfo" parameterType="string" resultMap="BaseResultMap">
+    SELECT ps.*, s.`service_name`
+    FROM np_platform_service ps
+    LEFT JOIN np_service s ON s.`service_code` = ps.`service_code`
+    WHERE ps.`app_id` = #{appId}
+    ORDER BY ps.`list_order`
+  </select>
+
+</mapper>

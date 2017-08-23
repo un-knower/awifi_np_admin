@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.awifi.np.admin.dao.NPServicePublishLogMapper" >
+  <resultMap id="BaseResultMap" type="com.awifi.np.admin.entity.NPServicePublishLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="service_id" property="serviceId" jdbcType="INTEGER" />
+    <result column="service_code" property="serviceCode" jdbcType="VARCHAR" />
+    <result column="publish_version" property="publishVersion" jdbcType="VARCHAR" />
+    <result column="publish_status" property="publishStatus" jdbcType="TINYINT" />
+    <result column="config_date" property="configDate" jdbcType="TIMESTAMP" />
+    <result column="test_date" property="testDate" jdbcType="TIMESTAMP" />
+    <result column="check_date" property="checkDate" jdbcType="TIMESTAMP" />
+    <result column="publish_date" property="publishDate" jdbcType="TIMESTAMP" />
+    <result column="cancel_date" property="cancelDate" jdbcType="TIMESTAMP" />
+    <result column="config_user_id" property="configUserId" jdbcType="INTEGER" />
+    <result column="test_user_id" property="testUserId" jdbcType="INTEGER" />
+    <result column="check_user_id" property="checkUserId" jdbcType="INTEGER" />
+    <result column="publish_user_id" property="publishUserId" jdbcType="INTEGER" />
+    <result column="cancel_user_id" property="cancelUserId" jdbcType="INTEGER" />
+    <result column="service_name" property="serviceName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.awifi.np.admin.entity.NPServicePublishLog" extends="BaseResultMap" >
+    <result column="config" property="config" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, service_id, service_code, publish_version, publish_status, config_date, test_date, 
+    check_date, publish_date, cancel_date, config_user_id, test_user_id, check_user_id, 
+    publish_user_id, cancel_user_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    config
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.awifi.np.admin.entity.NPServicePublishLogCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from np_service_publish_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.awifi.np.admin.entity.NPServicePublishLogCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from np_service_publish_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from np_service_publish_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from np_service_publish_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.awifi.np.admin.entity.NPServicePublishLogCriteria" >
+    delete from np_service_publish_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.awifi.np.admin.entity.NPServicePublishLog" >
+    insert into np_service_publish_log (id, service_id, service_code, 
+      publish_version, publish_status, config_date, 
+      test_date, check_date, publish_date, 
+      cancel_date, config_user_id, test_user_id, 
+      check_user_id, publish_user_id, cancel_user_id, 
+      config)
+    values (#{id,jdbcType=INTEGER}, #{serviceId,jdbcType=INTEGER}, #{serviceCode,jdbcType=VARCHAR}, 
+      #{publishVersion,jdbcType=VARCHAR}, #{publishStatus,jdbcType=TINYINT}, #{configDate,jdbcType=TIMESTAMP}, 
+      #{testDate,jdbcType=TIMESTAMP}, #{checkDate,jdbcType=TIMESTAMP}, #{publishDate,jdbcType=TIMESTAMP}, 
+      #{cancelDate,jdbcType=TIMESTAMP}, #{configUserId,jdbcType=INTEGER}, #{testUserId,jdbcType=INTEGER}, 
+      #{checkUserId,jdbcType=INTEGER}, #{publishUserId,jdbcType=INTEGER}, #{cancelUserId,jdbcType=INTEGER}, 
+      #{config,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.awifi.np.admin.entity.NPServicePublishLog" useGeneratedKeys="true" keyProperty="id">
+    insert into np_service_publish_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serviceId != null" >
+        service_id,
+      </if>
+      <if test="serviceCode != null" >
+        service_code,
+      </if>
+      <if test="publishVersion != null" >
+        publish_version,
+      </if>
+      <if test="publishStatus != null" >
+        publish_status,
+      </if>
+      <if test="configDate != null" >
+        config_date,
+      </if>
+      <if test="testDate != null" >
+        test_date,
+      </if>
+      <if test="checkDate != null" >
+        check_date,
+      </if>
+      <if test="publishDate != null" >
+        publish_date,
+      </if>
+      <if test="cancelDate != null" >
+        cancel_date,
+      </if>
+      <if test="configUserId != null" >
+        config_user_id,
+      </if>
+      <if test="testUserId != null" >
+        test_user_id,
+      </if>
+      <if test="checkUserId != null" >
+        check_user_id,
+      </if>
+      <if test="publishUserId != null" >
+        publish_user_id,
+      </if>
+      <if test="cancelUserId != null" >
+        cancel_user_id,
+      </if>
+      <if test="config != null" >
+        config,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceCode != null" >
+        #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="publishVersion != null" >
+        #{publishVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="publishStatus != null" >
+        #{publishStatus,jdbcType=TINYINT},
+      </if>
+      <if test="configDate != null" >
+        #{configDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="testDate != null" >
+        #{testDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishDate != null" >
+        #{publishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelDate != null" >
+        #{cancelDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="configUserId != null" >
+        #{configUserId,jdbcType=INTEGER},
+      </if>
+      <if test="testUserId != null" >
+        #{testUserId,jdbcType=INTEGER},
+      </if>
+      <if test="checkUserId != null" >
+        #{checkUserId,jdbcType=INTEGER},
+      </if>
+      <if test="publishUserId != null" >
+        #{publishUserId,jdbcType=INTEGER},
+      </if>
+      <if test="cancelUserId != null" >
+        #{cancelUserId,jdbcType=INTEGER},
+      </if>
+      <if test="config != null" >
+        #{config,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.awifi.np.admin.entity.NPServicePublishLogCriteria" resultType="java.lang.Integer" >
+    select count(*) from np_service_publish_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update np_service_publish_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceId != null" >
+        service_id = #{record.serviceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceCode != null" >
+        service_code = #{record.serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishVersion != null" >
+        publish_version = #{record.publishVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishStatus != null" >
+        publish_status = #{record.publishStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.configDate != null" >
+        config_date = #{record.configDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.testDate != null" >
+        test_date = #{record.testDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.checkDate != null" >
+        check_date = #{record.checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.publishDate != null" >
+        publish_date = #{record.publishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cancelDate != null" >
+        cancel_date = #{record.cancelDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.configUserId != null" >
+        config_user_id = #{record.configUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.testUserId != null" >
+        test_user_id = #{record.testUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkUserId != null" >
+        check_user_id = #{record.checkUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.publishUserId != null" >
+        publish_user_id = #{record.publishUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cancelUserId != null" >
+        cancel_user_id = #{record.cancelUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.config != null" >
+        config = #{record.config,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update np_service_publish_log
+    set id = #{record.id,jdbcType=INTEGER},
+      service_id = #{record.serviceId,jdbcType=INTEGER},
+      service_code = #{record.serviceCode,jdbcType=VARCHAR},
+      publish_version = #{record.publishVersion,jdbcType=VARCHAR},
+      publish_status = #{record.publishStatus,jdbcType=TINYINT},
+      config_date = #{record.configDate,jdbcType=TIMESTAMP},
+      test_date = #{record.testDate,jdbcType=TIMESTAMP},
+      check_date = #{record.checkDate,jdbcType=TIMESTAMP},
+      publish_date = #{record.publishDate,jdbcType=TIMESTAMP},
+      cancel_date = #{record.cancelDate,jdbcType=TIMESTAMP},
+      config_user_id = #{record.configUserId,jdbcType=INTEGER},
+      test_user_id = #{record.testUserId,jdbcType=INTEGER},
+      check_user_id = #{record.checkUserId,jdbcType=INTEGER},
+      publish_user_id = #{record.publishUserId,jdbcType=INTEGER},
+      cancel_user_id = #{record.cancelUserId,jdbcType=INTEGER},
+      config = #{record.config,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update np_service_publish_log
+    set id = #{record.id,jdbcType=INTEGER},
+      service_id = #{record.serviceId,jdbcType=INTEGER},
+      service_code = #{record.serviceCode,jdbcType=VARCHAR},
+      publish_version = #{record.publishVersion,jdbcType=VARCHAR},
+      publish_status = #{record.publishStatus,jdbcType=TINYINT},
+      config_date = #{record.configDate,jdbcType=TIMESTAMP},
+      test_date = #{record.testDate,jdbcType=TIMESTAMP},
+      check_date = #{record.checkDate,jdbcType=TIMESTAMP},
+      publish_date = #{record.publishDate,jdbcType=TIMESTAMP},
+      cancel_date = #{record.cancelDate,jdbcType=TIMESTAMP},
+      config_user_id = #{record.configUserId,jdbcType=INTEGER},
+      test_user_id = #{record.testUserId,jdbcType=INTEGER},
+      check_user_id = #{record.checkUserId,jdbcType=INTEGER},
+      publish_user_id = #{record.publishUserId,jdbcType=INTEGER},
+      cancel_user_id = #{record.cancelUserId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.awifi.np.admin.entity.NPServicePublishLog" >
+    update np_service_publish_log
+    <set >
+      <if test="serviceId != null" >
+        service_id = #{serviceId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceCode != null" >
+        service_code = #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="publishVersion != null" >
+        publish_version = #{publishVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="publishStatus != null" >
+        publish_status = #{publishStatus,jdbcType=TINYINT},
+      </if>
+      <if test="configDate != null" >
+        config_date = #{configDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="testDate != null" >
+        test_date = #{testDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkDate != null" >
+        check_date = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishDate != null" >
+        publish_date = #{publishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelDate != null" >
+        cancel_date = #{cancelDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="configUserId != null" >
+        config_user_id = #{configUserId,jdbcType=INTEGER},
+      </if>
+      <if test="testUserId != null" >
+        test_user_id = #{testUserId,jdbcType=INTEGER},
+      </if>
+      <if test="checkUserId != null" >
+        check_user_id = #{checkUserId,jdbcType=INTEGER},
+      </if>
+      <if test="publishUserId != null" >
+        publish_user_id = #{publishUserId,jdbcType=INTEGER},
+      </if>
+      <if test="cancelUserId != null" >
+        cancel_user_id = #{cancelUserId,jdbcType=INTEGER},
+      </if>
+      <if test="config != null" >
+        config = #{config,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.awifi.np.admin.entity.NPServicePublishLog" >
+    update np_service_publish_log
+    set service_id = #{serviceId,jdbcType=INTEGER},
+      service_code = #{serviceCode,jdbcType=VARCHAR},
+      publish_version = #{publishVersion,jdbcType=VARCHAR},
+      publish_status = #{publishStatus,jdbcType=TINYINT},
+      config_date = #{configDate,jdbcType=TIMESTAMP},
+      test_date = #{testDate,jdbcType=TIMESTAMP},
+      check_date = #{checkDate,jdbcType=TIMESTAMP},
+      publish_date = #{publishDate,jdbcType=TIMESTAMP},
+      cancel_date = #{cancelDate,jdbcType=TIMESTAMP},
+      config_user_id = #{configUserId,jdbcType=INTEGER},
+      test_user_id = #{testUserId,jdbcType=INTEGER},
+      check_user_id = #{checkUserId,jdbcType=INTEGER},
+      publish_user_id = #{publishUserId,jdbcType=INTEGER},
+      cancel_user_id = #{cancelUserId,jdbcType=INTEGER},
+      config = #{config,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.awifi.np.admin.entity.NPServicePublishLog" >
+    update np_service_publish_log
+    set service_id = #{serviceId,jdbcType=INTEGER},
+      service_code = #{serviceCode,jdbcType=VARCHAR},
+      publish_version = #{publishVersion,jdbcType=VARCHAR},
+      publish_status = #{publishStatus,jdbcType=TINYINT},
+      config_date = #{configDate,jdbcType=TIMESTAMP},
+      test_date = #{testDate,jdbcType=TIMESTAMP},
+      check_date = #{checkDate,jdbcType=TIMESTAMP},
+      publish_date = #{publishDate,jdbcType=TIMESTAMP},
+      cancel_date = #{cancelDate,jdbcType=TIMESTAMP},
+      config_user_id = #{configUserId,jdbcType=INTEGER},
+      test_user_id = #{testUserId,jdbcType=INTEGER},
+      check_user_id = #{checkUserId,jdbcType=INTEGER},
+      publish_user_id = #{publishUserId,jdbcType=INTEGER},
+      cancel_user_id = #{cancelUserId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="listPagePublishLog" parameterType="com.awifi.np.admin.entity.NPPage" resultMap="BaseResultMap">
+    SELECT g.*,s.`service_name`
+    FROM `np_service_publish_log` g
+    LEFT JOIN `np_service` s ON s.`service_code` = g.`service_code`
+    <where>
+      <if test="params.sid!=null">
+      s.`id` = #{params.sid}
+      </if>
+      <if test="params.keyword!=null">
+        AND (s.`service_code` LIKE #{params.keyword,jdbcType=VARCHAR} OR s.`service_name` LIKE #{params.keyword,jdbcType=VARCHAR})
+      </if>
+      <if test="params.publishStatus!=null">
+        AND g.`publish_status` = #{params.publishStatus}
+      </if>
+    </where>
+    ORDER BY g.`id` DESC
+  </select>
+
+  <select id="getJoinInfo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT *,s.`service_name`
+    FROM `np_service_publish_log` g
+    LEFT JOIN `np_service` s ON s.`service_code` = g.`service_code`
+    WHERE g.`id`=#{logid}
+  </select>
+
+</mapper>

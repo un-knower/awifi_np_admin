@@ -1,0 +1,275 @@
+/**
+ * 版权所有: 爱WiFi无线运营中心
+ * 创建日期: 2017-01-18 14:22
+ * 创建作者: haoxu 
+ * 文件名称: header
+ * 版本: v1.0
+ * 功能: xx
+ * 修改记录: xx
+ */
+//@import "comm.scss";
+// 当前位置
+.breadcrumb-wrap {
+    float: left;
+    padding-left: 20px;
+    line-height: 60px;
+}
+// 右侧头部
+#top-header {
+    position: fixed;
+    top: 0;
+    left: 210px;
+    z-index: 6;
+    height: 60px;
+    width: calc(100% - 210px);
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+// 顶部用户信息
+#head-member {
+    float: right;
+    margin-right: 20px;
+    line-height: 60px;
+
+    .member-menu-wrap {
+        .ivu-icon-ios-arrow-down {
+            transition: transform 0.3s ease-in-out;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+    }
+
+    .arrow-down-hover {
+        .ivu-icon-ios-arrow-down {
+            transform: rotate(180deg);
+        }
+    }
+
+    li {
+        position: relative;
+        float: left;
+        margin-right: 10px;
+
+        .member-menu {
+            position: absolute;
+            left: -40px;
+            background-color: #fff;
+            width: 120px;
+            line-height: 36px;
+            padding: 10px 0;
+            box-shadow: 0px 1px 2px #ccc;
+
+            a {
+                text-align: center;
+                display: block;
+                color: #333;
+
+                &:hover {
+                    color: #0E4E8E;
+                }
+
+                .ivu-icon {
+                    font-size: 16px;
+                    margin-right: 10px;
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+            border-radius: 50%;
+            border: 1px solid #aaa;
+        }
+    }
+}
+
+/** 左侧菜单 **/
+.nav {
+    position:fixed;
+    z-index:5;
+    float: left;
+    width: 70px;
+    height: 100%;
+    background-color: #1F60A1;;
+    overflow: hidden;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    transition: all 0.8s;
+    .nav-item {
+        margin-top: 15px;
+        margin-left: 15px;
+        color: #9FC9F4;;
+        cursor: default;
+        background-color: #1F60A1;
+        background-repeat: no-repeat;
+        background-position: center;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        -ms-transition: all .3s;
+        transition: all .3s;
+        .router-link-active {
+            color: #fff!important;
+            background-color:#0D4E8E;
+            border-left: 2px solid #1c8eff;
+            span{
+                color: #fff!important;
+            }
+        }
+        span {
+            line-height: 40px;
+            font-size: 14px;
+            white-space: nowrap;
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+    .nav-item > a .icon {
+        display:inline-block;
+        float:left;
+        width:22px;
+        height:22px;
+        margin: 10px 10px 0 10px;
+        vertical-align: middle;
+        background:url("../image/icon/allicons.png") no-repeat 0 0;
+    }
+    .ios-arrow-up{
+        display: inline-block;
+        width:8px;
+        height:8px;
+        background-image: url("../image/icon/arrows-up.png");
+        background-size:contain;
+        background-repeat: no-repeat;
+    }
+    .ios-arrow-down{
+        display: inline-block;
+        width:10px;
+        height:10px;
+        background-size:contain;
+        background-image: url("../image/icon/arrows-down.png");
+        background-repeat: no-repeat;
+    }
+    .active {
+        color: #fff!important;
+        span{
+            color: #fff!important;
+        }
+    }
+}
+
+.nav .nav-sub li {
+    &:hover{
+        a,span{
+            color: #fff;
+        }
+        background-color:#0D4E8E;
+    }
+
+}
+/*菜单-平台管理CSS*/
+.nav .nav-title, .nav .nav-title span {
+    &:hover{
+        color: #fff;
+        background-color:#0D4E8E;
+    }
+}
+/*菜单-平台管理CSS*/
+.nav .active .nav-title, .nav .active .nav-title span {
+    color: #fff;
+    background-color:#0D4E8E;
+}
+.nav .icon-index a .icon {
+    background-position: 0 0;
+}
+.nav .icon-index:hover a .icon, .nav .active.icon-index a .icon {
+    background-position:-22px 0px;
+}
+/*菜单-服务管理CSS*/
+.nav .icon-service a .icon {
+    background-position:-44px 0px;
+}
+.nav .icon-service:hover a .icon, .nav .active.icon-service a .icon {
+    background-position:-66px 0;
+}
+/*菜单-上线管理CSS*/
+.nav .icon-online a .icon {
+    background-position:-88px 0px;
+}
+.nav .icon-online:hover a .icon, .nav .active.icon-online a .icon {
+    background-position:-110px 0px;
+}
+/*菜单-系统管理CSS*/
+.nav .icon-system a .icon {
+    background-position:-132px 0px;
+}
+.nav .icon-system:hover a .icon, .nav .active.icon-system a .icon {
+    background-position:-154px 0px;
+}
+
+/*菜单-业务信息管理CSS*/
+.nav .icon-grid a .icon {
+    background-position:-176px 0px;
+}
+.nav .icon-grid:hover a .icon, .nav .active.icon-grid a .icon {
+    background-position:-198px 0px;
+}
+
+/** 其中：导航开启状态 **/
+.nav.on {
+    width: 210px;
+    .nav-item {
+        width: auto;
+        margin-top: 1px;
+        margin-left: 0;
+        background-position: 26px center;
+        span {
+            display: inline-block;
+        }
+        a {
+            text-decoration: none;
+            display: block;
+            word-wrap:break-word;
+            white-space: nowrap;
+        }
+        ul {
+            list-style: none;
+            clear: both;
+        }
+        &:first-child{
+            margin-top:70px;
+        }
+    }
+}
+.nav-item a, .nav-item span {
+    display: block;
+    color: #9FC9F4;
+}
+
+.nav-item > ul > li > a {
+    padding-left: 36px;
+}
+.nav-item > ul > li > ul > li > a {
+    padding-left: 58px;
+    line-height: 30px;
+    background-color: #E1EBED!important;
+
+}
+.nav-item > ul > li > ul > li > a:hover {
+    background-color: #c2c2c2!important;
+}
+
+.nav-item .nav-title {
+    clear: both;
+    height: 40px!important;
+    line-height: 40px;
+
+}
+.nav-title > span {
+    float: left;
+    width: 140px;
+}

@@ -1,0 +1,69 @@
+/**
+ * 版权所有: 爱WiFi无线运营中心
+ * 创建日期: 2017-01-18 19:08
+ * 创建作者: 朱学煌 17705818601@189.cn
+ * 文件名称: index
+ * 版本: v1.0
+ * 功能: xx
+ * 修改记录: xx
+ */
+
+@import "comm.scss";
+@import "header.scss";
+@import "boot-page.scss";
+@import "dialog.scss";
+@import "loading.scss";
+@import "transfer.scss";
+@import "nestification.scss";
+@import "auth.scss";
+@import "button.scss";
+@import "buttons.scss";
+@import "input-group.scss";
+@import "list.scss";
+@import "metroStyle.css";
+@import "modify.scss";
+@import "relevant.scss";
+@import "upload.scss";
+
+/*右侧body体*/
+::-webkit-scrollbar {
+	width: 4px;
+	height: 4px;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 0;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #cbcbcb;
+}
+#app{
+	height:100%;
+	.main-layout {
+		.bodycontentright {
+			margin-top:60px;
+			border: 0 none;
+			width: calc(100% - 210px);
+			margin-left: 210px;
+		}
+	}
+	.title-left-text {
+		background-color: #0E4E8E;
+		color:#fff;
+		float: left;
+		height: 60px;
+		line-height: 60px;
+		width:210px;
+		font-size:20px;
+		text-align:center;
+	}
+}
+
+#left{
+	flex: 0 0 auto;
+}
+#right{
+	flex: 1;
+}

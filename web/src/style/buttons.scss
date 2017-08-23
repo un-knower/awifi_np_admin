@@ -1,0 +1,52 @@
+/**
+ * 版权所有: 爱WiFi无线运营中心
+ * 创建日期: 2017-02-16 11:12
+ * 创建作者: haoxu 
+ * 文件名称: buttons
+ * 版本: v1.0
+ * 功能: xx
+ * 修改记录: xx
+ */
+.buttons{
+    width:70%;
+    text-align:center;
+    margin:0 auto;
+    padding:20px 0;
+    button{
+        display: inline-block;
+        height: 36px;
+        width:13%;
+        border:none;
+        border-radius:0;
+        font-size:16px;
+        box-sizing:border-box;
+        cursor:pointer;
+    }
+    .cancel{
+        margin-left:5px;
+        background: #E8E8E8;
+        color: #888888;
+    }
+    .confirm{
+        background: #147FE3;
+        color:#fff;
+    }
+}
+.normal-buttons{
+    text-align:center;
+    height:60px;
+    line-height:60px;
+    margin:0 auto;
+    button{
+        padding: 4px 14px;
+        margin: 0 8px;
+    }
+    .cancel{
+        background: #E8E8E8;
+        color: #888888;
+    }
+    .confirm{
+        background: #147FE3;
+        color:#fff;
+    }
+}

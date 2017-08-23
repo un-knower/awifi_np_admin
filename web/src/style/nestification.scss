@@ -1,0 +1,50 @@
+/**
+ * 版权所有: 爱WiFi无线运营中心
+ * 创建日期: 2017-01-22 11:23
+ * 创建作者: haoxu 
+ * 文件名称: nestification
+ * 版本: v1.0
+ * 功能: xx
+ * 修改记录: xx
+ */
+//@import "buttons.scss";
+.list{
+    padding-left: 1em;
+    line-height: 1.5em;
+    list-style-type: dot;
+    .rows{
+        line-height:20px;
+        color: #333;
+        list-style-type:none;
+        cursor: pointer;
+        .select{
+            display:inline-block;
+            width:13px;
+            height:13px;
+            border-radius:2px;
+            border:1px solid #147FE3;
+            vertical-align: middle;
+        }
+        .active{
+            background-color:#147FE3;
+            position:relative;
+            &:before{
+                position:absolute;
+                display:inline-block;
+                content:'√';
+                color:#fff;
+                font-size:14px;
+                line-height:13px;
+                top:0;
+                left:2px;
+            }
+        }
+        .names{
+            font-size:14px;
+            padding-left:5px;
+        }
+        .child-position{
+            margin-left:15px;
+        }
+    }
+}
